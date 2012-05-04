@@ -1,0 +1,12 @@
+{
+  "name": "URL Editor",
+  "version": "0.1",
+  "description": "Creates a simple interface to edit long URLs with lots of parameters..",
+  "manifest_version": 2,
+  "background": {"scripts":["background.js"]},
+  "permissions": ["tabs"],
+"browser_action": {
+    "default_icon": "url_edit.png",
+    "default_popup": "popup.html"
+  }
+}

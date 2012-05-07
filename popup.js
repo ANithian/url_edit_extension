@@ -44,6 +44,7 @@ function updateTable(url)
 	var query = uri.query();
 	var params = query.getParams();
 	var old_param=null;
+	var sKey=null,sValue=null;
 	
 	baseUrl = uri.protocol() + "://" + uri.host();
 	if(uri.port().length > 0)
@@ -57,12 +58,22 @@ function updateTable(url)
 	
 	for(var i=0; i < params.length; i++)
 	{
-		tableData.push([unescape(params[i][0]),unescape(params[i][1])]);
+		sKey = unescape(params[i][0]);
+		sValue = unescape(params[i][1]);
+		sValue = sValue.replace(/\+/g," ");
+		tableData.push([sKey,sValue]);
 	}
 	$('#base_url').html(baseUrl);
 	myTable.fnClearTable();
     myTable.fnAddData(tableData);
     myTable.makeEditable({
+    	aoColumns:[
+    	           {
+    	           },
+    	           {
+    	        	   placeholder:"&nbsp;"
+    	           }
+    	],
     	sUpdateURL: function(value, settings)
                                 {
                                         return(value);

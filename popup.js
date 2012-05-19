@@ -1,14 +1,14 @@
 $(document).ready(documentReady);
 
-//Get the current tab information by making a request to the background page
-//which has the tab state via registering for tab events.			
-chrome.extension.sendRequest({message: "get_tab"}, onMessageReceived);
 var tab_id = 0;
 var myTable = null;
 var baseUrl = null;
 
 function documentReady()
 {
+	//Get the current tab information
+	chrome.tabs.getSelected(null,tabInfoCallback);
+	
 	$("#btnUpdateUrl").click(updateUrl);
 	$('#container').html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="example"></table>' );
 	// myTable=$('#example').dataTable();
@@ -18,6 +18,12 @@ function documentReady()
 		"bStateSave": true,
         "aoColumns": [ {sTitle:"Param"},{sTitle:"Value"}]
     } );
+}
+
+function tabInfoCallback(tab)
+{
+	tab_id=tab.id;
+	updateTable(tab.url);
 }
 
 function updateUrl()

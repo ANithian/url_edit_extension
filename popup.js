@@ -40,27 +40,16 @@ function updateUrl()
 function updateTable(url)
 {
 	var tableData = [];	
-	var uri = new Uri(url);
-	var query = uri.query();
-	var params = query.getParams();
+	var url_object = parseUrl(url);
+	
 	var old_param=null;
 	var sKey=null,sValue=null;
-	
-	baseUrl = uri.protocol() + "://" + uri.host();
-	if(uri.port().length > 0)
-	{
-		baseUrl = baseUrl + ":" + uri.port();
-	}
-	if(uri.path().length > 0)
-	{
-		baseUrl = baseUrl + uri.path();
-	}
-	
+	baseUrl = url_object.baseUrl;
+	var params = url_object.url_params;
 	for(var i=0; i < params.length; i++)
 	{
-		sKey = unescape(params[i][0]);
-		sValue = unescape(params[i][1]);
-		sValue = sValue.replace(/\+/g," ");
+		sKey = params[i][0];
+		sValue = params[i][1];
 		tableData.push([sKey,sValue]);
 	}
 	$('#base_url').html(baseUrl);
@@ -71,7 +60,8 @@ function updateTable(url)
     	           {
     	           },
     	           {
-    	        	   placeholder:"&nbsp;"
+    	        	   placeholder:"&nbsp;",
+    	        	   type: 'textarea'
     	           }
     	],
     	sUpdateURL: function(value, settings)

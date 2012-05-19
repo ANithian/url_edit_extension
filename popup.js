@@ -61,7 +61,8 @@ function updateTable(url)
     	           },
     	           {
     	        	   placeholder:"&nbsp;",
-    	        	   type: 'textarea'
+    	        	   type: 'textarea',
+    	        	   onblur:'submit'
     	           }
     	],
     	sUpdateURL: function(value, settings)

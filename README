@@ -3,3 +3,6 @@ modifying URLs that contain lots of parameters, then this extension will help yo
 placing each url parameter key/value pair into an editable table. You can edit the parameter name and/or value and click
 the "Update" button to refresh the page with the new parameter name/values. If there are bugs, please
 file them in github and happy URL editing!
+
+To see more information about this plugin and screenshots of this in action, please visit my blog post
+http://hokiesuns.blogspot.com/2012/05/manipulating-urls-with-long-query.html
